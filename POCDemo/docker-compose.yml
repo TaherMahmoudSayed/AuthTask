@@ -1,0 +1,31 @@
+#docker file connecting springboot app with mssql server (^-^)
+services:
+  mssqlDB:
+    container_name: mssqlV3
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      SA_PASSWORD: "TaherTito123"
+      ACCEPT_EULA: "Y"
+    ports:
+      - '1445:1433'
+    restart: unless-stopped
+    networks:
+      - springBootApp
+
+  springApp:
+    container_name: springV2
+    image: pocdemo
+    environment:
+       SPRING_DATASOURCE_URL: jdbc:sqlserver://mssqlV3;trustServerCertificate=true;databaseName=userservice2
+       SPRING_DATASOURCE_USERNAME: sa
+       SPRING_DATASOURCE_PASSWORD: TaherTito123
+    ports:
+      - "8088:8080"
+    depends_on:
+      - mssqlDB
+    networks:
+      - springBootApp
+
+networks:
+  springBootApp:
+    driver: bridge

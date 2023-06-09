@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    url: jdbc:sqlserver://localhost:1445;trustServerCertificate=true;databaseName=userservice2
+    #url: jdbc:sqlserver://localhost:1433;trustServerCertificate=true;databaseName=userservice
+    username: sa
+    password: TaherTito123
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jpa:
+    database-platform: org.hibernate.dialect.SQLServerDialect
+    hibernate:
+        ddl-auto: create # or "create", "create-drop", "none"
+        naming:
+         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true # Set this to false in production
+
+  logging:
+    level:
+        org.hibernate: DEBUG
+        org.springframework.orm.jpa: DEBUG
+        org.springframework.transaction: DEBUG
+    file:
+        name: myapp.log
+        path: G:\javaProjects\we Projects\1stTask BWC\log\myapp.log
+
+
